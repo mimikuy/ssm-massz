@@ -1,0 +1,210 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: #FFF;
+}
+.zhong .mui-icon{
+	color: black;
+}
+
+.mui-bar-nav{
+	top: 0;
+	-webkit-box-shadow: 0 0px 0px #ccc;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.zhong .record .info-left span{
+	font-size: 15px;
+	color: #8F8F94;
+}
+
+.zhong .follow span{
+	font-size: 15px;
+	color: #8F8F94;
+}
+
+.record{
+	display: flex;
+}
+
+.info-left{
+	flex: 1;
+	margin-left: 20px;
+}
+.info-right{
+	margin-right: 4%;
+}
+
+.info-middle{
+	width: auto;
+	height: auto;
+}
+
+.images{
+	margin-left: 20px;
+	/* padding-bottom: 30px; */
+}
+
+.img1{
+	margin-top: 15px;
+	height: 80px;
+	width: 80px;
+	margin-left: 8px;
+
+}
+
+.images .img-one{
+	float: left;
+}
+.images .img-two{
+	float: left;
+}
+
+.images .img-name{
+	text-align: center;
+	font-size: 12px;
+}
+
+.images .img-three .img-name3{
+	font-size: 12px;
+	margin-left: 190px;
+}
+
+.gap{
+	height: 8px;
+	background-color: #F7F7F7;
+	width: 100%;
+}
+
+.gap2{
+	height: 2px;
+	background-color: #F7F7F7;
+	width: 100%;
+}
+.gap3{
+	margin-top:10px ;
+	height: 30px;
+	background-color: #F7F7F7;
+	width: 2px;
+}
+
+.follow{
+	margin: 10px 0px 10px 20px;
+}
+.ba-name{
+	display: flex;
+	height: 50px;
+}
+.name-left{
+	margin-top: 15px;
+	width: 50%;
+	display: flex;
+}
+.name-right{
+	margin-top: 15px;
+	width: 50%;
+	display: flex;
+}
+
+.zhong .foot{
+	margin-top: 8px;
+	color: #209EFF;
+	text-align: center;
+
+}
+
+
+
+
+/* 底部 */
+
+.botton-foot{
+	width: 100%;
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	border-top: 2px solid #f7f7f7;
+	background-color: white;
+}
+
+.botton-foot .button-one{
+	flex: 1;
+	float: left;
+	margin-left: 25px;
+	margin-top: 5px;
+}
+.botton-foot .button-one .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-one .iconfont .one{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-two{
+	flex: 1;
+	float: left;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+.botton-foot .button-two .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-two .iconfont .two{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-three{
+	flex: 1;
+	float: left;
+	/* margin-left: 40px; */
+
+}
+
+.botton-foot .button-three .mui-icon{
+	text-align: center;
+	line-height: 40px;
+	font-size: 40px;
+}
+
+
+.botton-foot .button-four{
+	flex: 1;
+	float: left;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+.botton-foot .button-four .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-four .iconfont .four{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-five{
+	flex: 1;
+	float: left;
+	/* margin-left: 50px; */
+	margin-top: 5px;
+}
+.botton-foot .button-five .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-five .iconfont .five{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-five a{
+	text-decoration:none;
+	color: #000000;
+}

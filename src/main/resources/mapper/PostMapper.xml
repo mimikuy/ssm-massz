@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.massz.dao.PostMapper">
+    <insert id="insertPost" parameterType="cn.massz.model.Posts" useGeneratedKeys="true" keyProperty="postId">
+        insert into post(post_title,content,bar_id,user_id) values(#{postTitle},#{content},#{barId},#{userId})
+    </insert>
+
+    <resultMap id="postData" type="cn.massz.model.Posts">
+        <id property="postId" column="postId"></id>
+        <collection property="postImgList" column="postId" select="selectPostImg"></collection>
+    </resultMap>
+
+    <select id="selectPostImg" resultType="cn.massz.model.PostImg">
+        select pic_name picName from post_img where post_id = #{postId}
+    </select>
+
+    <select id="getPostList" parameterType="cn.massz.model.Posts" resultMap="postData">
+        select
+        post_id postId,
+        post_title postTitle,
+        b.bar_name barName,
+        a.create_time createTime,
+        a.secret
+        from post a
+        left join bar b on a.bar_id = b.bar_id
+        <where>
+            <if test="userId != null and userId != ''">
+                a.user_id =#{userId}
+            </if>
+        </where>
+        order by post_id desc
+    </select>
+
+
+    <resultMap id="postMap" type="cn.massz.model.Posts">
+        <id column="post_id" property="postId"></id>
+        <result column="post_title" property="postTitle"></result>
+        <result column="content" property="content"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="create_time" property="createTime"></result>
+        <association property="users" javaType="cn.massz.model.Users">
+            <id column="user_id" property="user_id"></id>
+            <result column="nick_name" property="nick_name"></result>
+            <result column="avatar" property="avatar"></result>
+        </association>
+        <association property="bar" javaType="cn.massz.model.Bar">
+            <id column="bar_id" property="barId"></id>
+            <result column="bar_name" property="barName"></result>
+        </association>
+        <collection property="postImgList"
+                    ofType="cn.massz.model.PostImg"
+                    select="selectPostImg"
+                    column="postId">
+        </collection>
+    </resultMap>
+
+
+    <select id="getAllPosts" resultMap="postMap">
+        select p.post_id postId,p.post_title,p.content,p.bar_id,p.user_id,p.create_time,secret,b.bar_name,u.nick_name,u.avatar
+        from post p LEFT JOIN bar b on p.bar_id = b.bar_id
+                    LEFT JOIN users u on p.user_id = u.user_id
+
+    </select>
+
+
+
+</mapper>

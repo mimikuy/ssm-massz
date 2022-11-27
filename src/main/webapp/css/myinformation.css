@@ -1,0 +1,134 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: #fff;
+}
+
+#header {
+	background-color: #fff;
+}
+
+.mui-bar-nav {
+	top: 0;
+	-webkit-box-shadow: 0 0px 0px #ccc;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+#header .mui-icon{
+	color: #000;
+	/* font-size: 28px; */
+}
+
+
+
+.container .top .baocun{
+	font-size: 14px;
+	position: relative;
+	z-index: 20;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+
+.container {
+	margin-top: 100px;
+
+}
+
+.container .tx{
+	text-align: center;
+}
+
+.container .tx .mui-icon{
+	position: relative;
+	left: -40px;
+	background-color: blue;
+	border-radius: 50%;
+}
+
+
+.container .tx .touxiang{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+
+}
+
+.container .input-username {
+	margin-top: 50px;
+	margin-left: 50px;
+}
+.container .input-username .name{
+	font-size: 16px;
+	color: #777777;
+}
+
+.container .input-username .username{
+	border: none;
+	width: 198px;
+	font-size: 14px;
+	margin-left: 17px;
+}
+
+
+.container .input-nickname{
+	margin-left: 50px;
+}
+.container .input-nickname .name{
+	font-size: 16px;
+	color: #777777;
+}
+.container .input-nickname .mui-icon{
+	font-size: 14px;
+	color: #000000;
+	margin-left: 40px;
+
+}
+.container .input-nickname .nickname{
+	border: none;
+	width: 170px;
+	font-size: 14px;
+	margin-left: 33px;
+}
+
+.container .input-gender{
+	margin-left: 50px;
+}
+.container .input-gender .name{
+	font-size: 16px;
+	color: #777777;
+}
+.container .input-gender .gender{
+	border: none;
+	width: 198px;
+	font-size: 14px;
+	margin-left: 33px;
+}
+
+.container .input-signature{
+	margin-left: 50px;
+}
+.container .input-signature .name{
+	font-size: 16px;
+	color: #777777;
+}
+.container .input-signature .signature{
+	border: none;
+	width: 198px;
+	font-size: 8px;
+	/* color: #000000; */
+}
+.container .input-signature textarea{
+	padding: 2px 15px;
+}
+.container .input-signature #jie{
+	 display: none;
+	 font-size: 8px;
+
+}
+
+
+

@@ -1,0 +1,175 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background-color: white;
+}
+
+/* #header{
+	
+	height: 140px;
+	background: url(../images/beijing.jpg) no-repeat; 
+	background-size: cover;
+} */
+
+.bg{
+	height: 150px;
+	width: 100%;
+}
+
+#header {
+	background-color: rgba(0,0,0,0);
+	
+}
+
+.mui-bar-nav{
+	top: 0;
+	-webkit-box-shadow: 0 0px 0px #ccc;
+}
+
+#header h1{
+	color: #FFFFFF;
+}
+
+#header a{
+	color: #FFFFFF;
+}
+
+.touxiang {
+	position: absolute; 
+	top: -20px;
+	left: -250px;
+	
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	
+	border: 2px solid white;
+	
+}
+
+.button-ziliao{
+	position: absolute;
+	top: 145px;
+	right: 20px;
+	
+}
+
+.button-ziliao button{
+	
+	background-color: #007AFF;
+	color: #FFFFFF;
+}
+
+.info-top{
+	margin-left: 25px;
+	font-size: 20px;
+}
+
+.info-top .huangguan{
+	font-size: 20px;
+}
+
+.info-top .gender{
+	background-color: #209eff;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 12px;
+	padding: 2px;
+}
+
+.info-middle{
+	font-size: 8px;
+	color: #8F8F94;
+	margin-left: 22px;
+}
+
+.baling{
+	font-size: 8px;
+	margin-left: 22px;
+}
+.jianjie{
+	font-size: 8px;
+	margin-left: 22px;
+	color: #8F8F94;
+}
+
+.gap{
+	margin-top: 20px;
+	height: 8px;
+	background-color: #F7F7F7;
+	width: 100%;
+}
+
+.nianfen{
+	margin-top: 10px;
+	margin-left: 22px;
+	font-size: 18px;
+}
+
+.info-div{
+	margin-top: 25px;
+	margin-left: 22px;
+	
+}
+
+
+.info-div .info-baming .f .riqi{
+	font-size: 30px;
+}
+
+.info-div .yuefen{
+	font-size: 2px;
+	color: #8F8F94;
+	margin-left: 6px;
+}
+
+.info-div .info-baming{
+	display: flex;
+	
+}
+
+.info-div .info-baming .f{
+	display: flex;
+	flex: 1;
+}
+
+.info-div .info-baming .ba{	
+	margin-left: 20px;
+	font-size: 14px;
+	color: #8F8F94;
+}
+
+.info-div .info-baming .tubiao .a{
+	font-size: 20px;
+	margin-right: 8px;
+	color: #4f4f52;
+}
+
+
+
+.info-div .neirong{
+	margin-left: 55px;
+	margin-top: -16px;
+	
+}
+
+.info-div .neirong .span-neirong{
+	font-size: 18px;
+}
+
+.info-foot{
+	margin-top: 20px;
+}
+
+.info-foot .iconfont{
+	margin-left: 80px;
+}
+
+.img-qishen{
+	width: 150px;
+	height: 130px;
+	
+}

@@ -1,0 +1,202 @@
+body{
+	background-color: #FFF;
+}
+
+#header{
+	background-color: #FFF;
+}
+
+#header a{
+	color: #000;
+}
+
+#header .mui-icon{
+	font-size: 30px;
+}
+
+.mui-bar-nav{
+	top: 0;
+	-webkit-box-shadow: 0 0px 0px #ccc;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.info-middle{
+	margin-left: 5px;
+}
+
+.into-first{
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	/* border-bottom: 1px solid #f7f7f7; */
+}
+
+.into-first .info-middle{
+	flex: 1;
+}
+
+.more{
+	margin-top: -20px;
+}
+
+.into-first .avatar{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+}
+
+.into-first .info-bottom{
+	font-size: 3px;
+}
+
+.info-text span{
+	margin-left: 8px;
+}
+
+
+.info-foot{
+	margin-top: 20px;
+}
+
+.info-foot .iconfont{
+	margin-left: 100px;
+}
+
+.gap{
+	height: 8px;
+	background-color: #F7F7F7;
+	width: 100%;
+}
+
+.parent-div{
+	margin-bottom: 44px;
+}
+
+/*.img-hua1{
+	width: 100px;
+	height: 100px;
+	margin-left: 8px;
+}
+
+.img-hua2{
+	width: 100px;
+	height: 100px;
+	margin-left: 4px;
+}*/
+
+/*照片*/
+
+.post-img img{
+	width: 100%;
+	max-height: 250px;
+	object-fit:cover;
+}
+.post-img-2 img{
+	margin: 0 1%;
+	height: 78px;
+	width: 30%;
+}
+.post-img-3 img{
+	margin: 0 0.5%;
+	height: 78px;
+	width: 30%;
+}
+
+
+
+/* 底部 */
+
+.botton-foot{
+	position: fixed;
+	z-index: 10;
+	right: 0;
+	left: 0;
+	bottom: 0px;
+	height: 50px;
+	padding-right: 10px;
+	padding-left: 10px;
+
+	width: 100%;
+	display: flex;
+	border-top: 2px solid #f7f7f7;
+	background-color: white;
+}
+
+.botton-foot .button-one{
+	flex: 1;
+	float: left;
+	margin-left: 25px;
+	margin-top: 5px;
+}
+.botton-foot .button-one .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-one .iconfont .one{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-two{
+	flex: 1;
+	float: left;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+.botton-foot .button-two .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-two .iconfont .two{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-three{
+	flex: 1;
+	float: left;
+	/* margin-left: 40px; */
+
+}
+
+.botton-foot .button-three .mui-icon{
+	text-align: center;
+	line-height: 40px;
+	font-size: 40px;
+}
+
+
+.botton-foot .button-four{
+	flex: 1;
+	float: left;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+.botton-foot .button-four .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-four .iconfont .four{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-five{
+	flex: 1;
+	float: left;
+	/* margin-left: 50px; */
+	margin-top: 5px;
+}
+.botton-foot .button-five .iconfont{
+	font-size: 20px;
+	margin-left: 7px;
+}
+.botton-foot .button-five .iconfont .five{
+	margin-top: -5px;
+	font-size: 5px;
+}
+
+.botton-foot .button-five a{
+	text-decoration:none;
+	color: #000000;
+}
