@@ -1,0 +1,80 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: white;
+}
+
+.result-page .mui-search{
+	/* width: 90%; */
+	width: 82%;
+	display: inline-block;
+	left: 5px;
+	top: 5px;
+	
+}
+.mui-search .mui-placeholder {
+	text-align: left;
+	left: 30px;
+}
+
+.result-page .quxiao{
+	background-color: white;
+	color: #0062CC;
+	border: 0px;
+	font-size: 18px;
+	padding: 10px 12px;
+}
+
+.result-page .leixing{
+	font-size: 14px;
+	padding-bottom: 15px;
+}
+
+.result-page .leixing span{
+	margin-left: 15px;
+}
+
+.result-page .xiangguan{
+	font-size: 16px;
+	font-weight: bolder;
+	margin-left: 15px;
+	margin-bottom: 5px;
+}
+
+.ba-info{
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	border-bottom: 1px solid #f7f7f7;
+}
+.ba-info .avatar{
+	width: 50px;
+	height: 50px;
+	border-radius: 30%;
+}
+
+.ba-info .info-middle{
+	flex: 1;
+	margin-left: 5px;
+}
+.ba-info .info-top{
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+.ba-info .info-bottom{
+	font-size: 10px;
+	color: #b7b7b7;
+}
+
+.ba-info .more{
+	text-align: center;
+	width: 50px;
+	height: 20px;
+	font-size: 12px;
+	background-color: #bbbce2;
+	border-radius: 10px;
+}
+

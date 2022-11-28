@@ -1,0 +1,74 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: white;
+}
+
+.search-page .mui-search{
+	/* width: 90%; */
+	width: 82%;
+	display: inline-block;
+	left: 5px;
+	top: 5px;
+	
+}
+.mui-search .mui-placeholder {
+	text-align: left;
+	left: 30px;
+}
+
+.search-page .quxiao{
+	background-color: white;
+	color: #0062CC;
+	border: 0px;
+	font-size: 18px;
+	padding: 10px 12px;
+}
+
+.search-page .bang{
+	/* margin-top: 200px; */
+	margin-left: 15px;
+	padding-bottom: 15px;
+}
+
+.search-page .bang span{
+	margin-left: 10px;
+}
+
+.search-page .bang .first{
+	color: red;
+}
+
+
+.bangdan {
+	display: flex;
+	/* margin-top: 23px; */
+	padding-top: 15px;
+}
+.bangdan .ranking {
+	color: white;
+	text-align: center;
+	line-height: 18px;
+	height: 18px;
+	width: 18px;
+	border-radius: 25%;
+	background-color: #c7c7c7;
+	margin-left: 25px;
+	
+}
+.search-page .bangdan .redu{
+	text-align: right;
+	margin-right: 15px;
+	flex: 1;
+	font-size: 14px;
+	color: #bdbdbd;
+	
+}
+
+.search-page .beijing{
+	border-radius: 5%;
+	background-image: linear-gradient(#ffcbe0,#ffdbf1,#ffe9f3,#f1f1f1, #ffffff);
+}
