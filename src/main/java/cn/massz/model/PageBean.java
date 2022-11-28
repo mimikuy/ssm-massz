@@ -5,6 +5,7 @@ package cn.massz.model;
  */
 public class PageBean {
 
+
     private int pageCount; // 总页数
     private int pageSize = 10; // 分页中的数据条数
     private int currentPage = 1; // 当前页号

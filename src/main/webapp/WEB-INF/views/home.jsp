@@ -159,6 +159,10 @@
         }
     });
 
+    $(".mui-icon-search").click(function (){
+        window.location.href="/search/toSearch"
+    });
+
     $(".button-two").click(function () {
         window.location.href="/tojinba"
     });
@@ -178,13 +182,7 @@
     });
 
     $(".button-five").click(function () {
-        $.ajax({
-            type: 'post',
-            url:'',
-            success: function (res){
-                window.location.href="/tomy"
-            }
-        });
+        window.location.href="/tomy"
 
     });
 

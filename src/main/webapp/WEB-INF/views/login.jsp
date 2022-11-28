@@ -99,7 +99,7 @@
                 data: {user_name:$("#username").val(),password:$("#password").val()},
                 success: function (res){
                     if (res.code==200){
-                        window.location.href='/tomy'
+                        window.location.href='/toHome'
                     }else{
                         mui.alert(res.msg)
                     }

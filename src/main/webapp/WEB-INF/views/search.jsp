@@ -14,9 +14,9 @@
     <title></title>
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <link href="css/mui.css" rel="stylesheet"/>
-    <link href="css/search.css" rel="stylesheet"/>
-    <link href="fonts/iconfont.css" rel="stylesheet"/>
+    <link href="/css/mui.css" rel="stylesheet"/>
+    <link href="/css/search.css" rel="stylesheet"/>
+    <link href="/fonts/iconfont.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -25,7 +25,6 @@
         <div class="mui-input-row mui-search">
             <input type="search" class="mui-input-clear" placeholder="大家都在搜：《卧龙：苍天陨落》"/>
         </div>
-
         <input class="quxiao" type="button" value="取消"/>
     </div>
     <div class="bang">
@@ -77,9 +76,28 @@
     </div>
 </div>
 
-<script src="js/mui.js"></script>
+<script src="/js/mui.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     mui.init()
+
+    $(".mui-input-clear").keydown(function (){
+        if (event.keyCode == 13){
+            console.log($(".mui-input-clear").val())
+            $.ajax({
+                type: 'post',
+                data: {barName : $(".mui-input-clear").val()},
+                url: '/search/searchBar',
+                success:function (res){
+                    window.location.href='/search/toResult'
+                }
+
+            });
+        }
+    });
+    // $(".mui-input-clear").blur(function (){
+    //
+    // });
 </script>
 </body>
 

@@ -2,6 +2,8 @@ package cn.massz;
 
 
 import cn.massz.dao.PostMapper;
+import cn.massz.dao.SearchMapper;
+import cn.massz.model.Bar;
 import cn.massz.model.Posts;
 import cn.massz.service.PostService;
 import org.junit.runner.RunWith;
@@ -21,6 +23,9 @@ public class Test {
     @Autowired
     private PostMapper mapper;
 
+    @Autowired
+    private SearchMapper searchMapper;
+
     @org.junit.Test
     public void testQueryCount(){
         List<Posts> allPosts = service.getAllPosts();
@@ -31,6 +36,15 @@ public class Test {
     public void testQueryCount1(){
         List<Posts> allPosts = mapper.getAllPosts1();
         System.out.println(allPosts);
+    }
+
+    @org.junit.Test
+    public void testQueryCount2(){
+        Bar bar=new Bar();
+        bar.setBarName("足球");
+        List<Bar> barList = searchMapper.searchByName(bar);
+
+        System.out.println(barList);
     }
 
 
