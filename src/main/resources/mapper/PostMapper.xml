@@ -54,7 +54,6 @@
         </collection>
     </resultMap>
 
-
     <select id="getAllPosts" resultMap="postMap">
         select p.post_id postId,p.post_title,p.content,p.bar_id,p.user_id,p.create_time,secret,b.bar_name,u.nick_name,u.avatar
         from post p LEFT JOIN bar b on p.bar_id = b.bar_id

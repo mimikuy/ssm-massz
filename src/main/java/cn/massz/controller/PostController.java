@@ -39,6 +39,11 @@ public class PostController {
         return "postList";
     }
 
+    /*@RequestMapping("/toPostBar")
+    public String toPostBar() {
+        return "postBar";
+    }*/
+
     @RequestMapping("/toPublish")
     public String toPublish(HttpSession session)
     {
@@ -47,6 +52,8 @@ public class PostController {
         session.setAttribute("barList",barList);
         return "posts";
     }
+
+
 
     @PostMapping("/publish")
     @ResponseBody
@@ -102,7 +109,7 @@ public class PostController {
         PageHelper.startPage(pageNum,pageSize); // pageNum当前页码，pageSize每页条数
         List<Posts> list = postService.getAllPosts();
         PageInfo pageInfo = new PageInfo(list);
-        System.out.println(pageInfo);
+        /*System.out.println(pageInfo);*/
         R r = new R();
         if (list!=null){
             r.setCode(200);

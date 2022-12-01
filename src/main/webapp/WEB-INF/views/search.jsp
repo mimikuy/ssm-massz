@@ -95,9 +95,11 @@
             });
         }
     });
-    // $(".mui-input-clear").blur(function (){
-    //
-    // });
+
+    $(".quxiao").click(function () {
+        window.location.href='/tomy'
+    });
+
 </script>
 </body>
 

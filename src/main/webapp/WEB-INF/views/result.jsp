@@ -38,13 +38,13 @@
         <span>相关吧</span>
     </div>
     <c:forEach items="${barList}" var="bar">
-        <div class="ba-info">
+        <div class="ba-info" onclick="toPostBar('${bar.barName}')">
             <img class="avatar" src="/img/${bar.picName}" />
             <div class="info-middle">
                 <div class="info-top">
                     <span class="nickname">${bar.barName}</span>
                 </div>
-                <div class="info-bottom">关注${bar.follow}W 帖子${bar.posts}W</div>
+                <div class="info-bottom">关注22.4W 帖子400.9W</div>
             </div>
             <div class="more">
                 <span class="guanzhu">关注</span>
@@ -55,8 +55,45 @@
 
 </div>
 <script src="/js/mui.js"></script>
+<script SRC="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     mui.init()
+
+    $(".mui-input-clear").keydown(function (){
+        if (event.keyCode == 13){
+            $.ajax({
+                type: 'post',
+                data: {barName : $(".mui-input-clear").val()},
+                url: '/search/searchBar',
+                success:function (res){
+                    window.location.href='/search/toResult'
+                }
+
+            });
+        }
+    });
+
+    $(".quxiao").click(function () {
+        window.location.href='/tomy'
+    });
+
+    <%--$(".ba-info").click(function () {--%>
+    <%--    console.log(${bar.barName})--%>
+    <%--    console.log("qqqq")--%>
+    <%--});--%>
+
+    function toPostBar(barName){
+        console.log(barName)
+        $.ajax({
+            type: 'post',
+            data: {barName:barName},
+            url: '/search/getAllPosts',
+            success:function (res) {
+                $('.result-page').html(res);
+            }
+        });
+    }
+
 </script>
 </body>
 

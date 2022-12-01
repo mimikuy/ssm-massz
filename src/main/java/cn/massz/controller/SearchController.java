@@ -3,6 +3,8 @@ package cn.massz.controller;
 import cn.massz.controller.util.R;
 import cn.massz.dao.SearchMapper;
 import cn.massz.model.Bar;
+import cn.massz.model.Posts;
+import cn.massz.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,7 @@ public class SearchController {
 
 
     @Autowired
-    private SearchMapper searchMapper;
+    private SearchService searchService;
     @RequestMapping ("/toSearch")
     public String toSearch(){
        return "search";
@@ -43,7 +45,7 @@ public class SearchController {
         }
         return modelAndView;*/
         R r=new R();
-        List<Bar> barList = searchMapper.searchByName(bar);
+        List<Bar> barList = searchService.searchByName(bar);
         if (barList!=null){
             r.setCode(200);
             session.setAttribute("barList",barList);
@@ -52,5 +54,38 @@ public class SearchController {
     }
 
 
+    @RequestMapping ("/toPostBar")
+    public ModelAndView toByBarName(String barName){
+        ModelAndView modelAndView=new ModelAndView();
+        Bar bar=searchService.toByBarName(barName);
+        if (bar!=null){
+        modelAndView.addObject("bar",bar);
+        modelAndView.setViewName("postBar");
+        }
+        return modelAndView;
+    }
+
+/*    @RequestMapping ("/getAllPosts")
+    @ResponseBody
+    public R getAllPosts(String barName,HttpSession session){
+        R r=new R();
+        List<Posts> allPostsByBarName = searchService.getAllPostsByBarName(barName);
+        if (allPostsByBarName!=null){
+            r.setCode(200);
+            session.setAttribute("barList",allPostsByBarName);
+        }
+        return r;
+    } */
+    @RequestMapping ("/getAllPosts")
+    @ResponseBody
+    public ModelAndView getAllPosts(String barName){
+        ModelAndView modelAndView=new ModelAndView();
+        List<Posts> allPostsByBarName = searchService.getAllPostsByBarName(barName);
+        if (allPostsByBarName!=null){
+            modelAndView.addObject("allPostsByBarName",allPostsByBarName);
+            modelAndView.setViewName("postBar");
+        }
+        return modelAndView;
+    }
 
 }

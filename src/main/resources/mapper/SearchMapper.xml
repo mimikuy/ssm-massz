@@ -2,13 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.massz.dao.SearchMapper">
     <select id="searchByName" resultType="cn.massz.model.Bar" parameterType="cn.massz.model.Bar">
-
-        select bar_id barId,bar_name barName,pic_name picName,follow,posts,user_id userId from bar
-
+        select bar_id barId,bar_name barName,pic_name picName,user_id userId from bar
         <where>
         <if test="barName != null"></if>
             and bar_name like CONCAT(CONCAT('%',#{barName},'%'))
         </where>
+    </select>
+
+    <select id="toByBarName" resultType="cn.massz.model.Bar" parameterType="java.lang.String">
+        select bar_id barId,bar_name barName,pic_name picName,user_id userId from bar where bar_name=#{barName}
+    </select>
+
+
+
+
+
+    <resultMap id="postMap" type="cn.massz.model.Posts">
+        <id column="post_id" property="postId"></id>
+        <result column="post_title" property="postTitle"></result>
+        <result column="content" property="content"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="create_time" property="createTime"></result>
+        <association property="users" javaType="cn.massz.model.Users">
+            <id column="user_id" property="user_id"></id>
+            <result column="nick_name" property="nick_name"></result>
+            <result column="avatar" property="avatar"></result>
+        </association>
+        <association property="bar" javaType="cn.massz.model.Bar">
+            <id column="bar_id" property="barId"></id>
+            <result column="bar_name" property="barName"></result>
+            <result column="pic_name" property="picName"></result>
+        </association>
+        <collection property="postImgList"
+                    ofType="cn.massz.model.PostImg"
+                    select="selectPostImg"
+                    column="post_id">
+        </collection>
+    </resultMap>
+
+    <select id="selectPostImg" resultType="cn.massz.model.PostImg">
+        select pic_name picName from post_img where post_id = #{post_id}
+    </select>
+
+    <select id="getAllPostsByBarName" resultMap="postMap" parameterType="java.lang.String">
+        select p.post_id,p.post_title,p.content,p.bar_id ,p.user_id,p.create_time,secret,b.bar_name,b.pic_name,u.nick_name,u.avatar
+        from post p LEFT JOIN bar b on p.bar_id = b.bar_id
+                    LEFT JOIN users u on p.user_id = u.user_id WHERE b.bar_name = #{barName}
 
     </select>
+
+
 </mapper>

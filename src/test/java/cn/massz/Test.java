@@ -40,9 +40,8 @@ public class Test {
 
     @org.junit.Test
     public void testQueryCount2(){
-        Bar bar=new Bar();
-        bar.setBarName("足球");
-        List<Bar> barList = searchMapper.searchByName(bar);
+
+        List<Posts> barList = searchMapper.getAllPostsByBarName("笑话");
 
         System.out.println(barList);
     }

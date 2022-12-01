@@ -4,8 +4,7 @@ public class Bar {
     private int barId;
     private String barName;
     private String picName;
-    private Double follow;
-    private Double posts;
+
     private int userId;
 
 
@@ -33,21 +32,6 @@ public class Bar {
         this.picName = picName;
     }
 
-    public Double getFollow() {
-        return follow;
-    }
-
-    public void setFollow(Double follow) {
-        this.follow = follow;
-    }
-
-    public Double getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Double posts) {
-        this.posts = posts;
-    }
 
     public int getUserId() {
         return userId;
@@ -63,8 +47,6 @@ public class Bar {
                 "barId=" + barId +
                 ", barName='" + barName + '\'' +
                 ", picName='" + picName + '\'' +
-                ", follow=" + follow +
-                ", posts=" + posts +
                 ", userId=" + userId +
                 '}';
     }
