@@ -193,12 +193,12 @@
 
 <div class="botton-foot">
     <div class="button-one">
-        <span class="iconfont icon-home_fill_light"></span>
+        <span class="iconfont icon-home"></span>
         <div class="one">首页</div>
     </div>
-    <div class="button-two">
+    <div class="button-two" >
         <span class="iconfont icon-post"></span>
-        <div class="two">进吧</div>
+        <div class="two" style="color: #00eaff">进吧</div>
     </div>
     <div class="button-three">
         <span class="mui-icon mui-icon-plus"></span>
@@ -242,6 +242,21 @@
 
     $(".button-five").click(function () {
         window.location.href="/tomy"
+    });
+
+    $(".mui-input-clear").keydown(function (){
+        if (event.keyCode == 13){
+            console.log($(".mui-input-clear").val())
+            $.ajax({
+                type: 'post',
+                data: {barName : $(".mui-input-clear").val()},
+                url: '/search/searchBar',
+                success:function (res){
+                    window.location.href='/search/toResult'
+                }
+
+            });
+        }
     });
 
 </script>

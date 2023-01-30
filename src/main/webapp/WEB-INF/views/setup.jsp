@@ -132,6 +132,10 @@
     $("#ziliao").click(function (){
         window.location.href='/tomyinformation'
     })
+
+    $(".out").click(function () {
+        window.location.href="/logout";
+    });
 </script>
 </body>
 

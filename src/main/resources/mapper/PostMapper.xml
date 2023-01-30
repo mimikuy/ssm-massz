@@ -20,7 +20,9 @@
         post_title postTitle,
         b.bar_name barName,
         a.create_time createTime,
-        a.secret
+        a.secret,
+        (select count(*) from post_like m where m.post_id = a.post_id) likeNum,
+        (select count(*) from post_like m where m.post_id = a.post_id and m.user_id=#{userId}) myLike
         from post a
         left join bar b on a.bar_id = b.bar_id
         <where>
@@ -38,6 +40,9 @@
         <result column="content" property="content"></result>
         <result column="user_id" property="userId"></result>
         <result column="create_time" property="createTime"></result>
+        <result column="likeNum" property="likeNum"></result>
+
+        <result column="myLike" property="myLike"></result>
         <association property="users" javaType="cn.massz.model.Users">
             <id column="user_id" property="user_id"></id>
             <result column="nick_name" property="nick_name"></result>
@@ -49,18 +54,32 @@
         </association>
         <collection property="postImgList"
                     ofType="cn.massz.model.PostImg"
-                    select="selectPostImg"
-                    column="postId">
+                    select="selectPostImg1"
+                    column="post_id">
+        </collection>
+        <collection property="pingLunNum"
+                    select="plSum"
+                    column="post_id">
         </collection>
     </resultMap>
 
-    <select id="getAllPosts" resultMap="postMap">
-        select p.post_id postId,p.post_title,p.content,p.bar_id,p.user_id,p.create_time,secret,b.bar_name,u.nick_name,u.avatar
+    <select id="selectPostImg1" resultType="cn.massz.model.PostImg">
+        select pic_name picName from post_img where post_id = #{post_id}
+    </select>
+
+    <select id="getAllPosts" resultMap="postMap" parameterType="cn.massz.model.Posts">
+        select p.post_id,p.post_title,p.content,p.bar_id,p.user_id,p.create_time,secret,b.bar_name,u.nick_name,u.avatar,
+               (select count(*) from post_like m where m.post_id = p.post_id) likeNum,
+            (select count(*) from post_like m where m.post_id = p.post_id and m.user_id=#{userId}) myLike
+
         from post p LEFT JOIN bar b on p.bar_id = b.bar_id
-                    LEFT JOIN users u on p.user_id = u.user_id
+                    LEFT JOIN users u on p.user_id = u.user_id order by p.post_id desc
 
     </select>
 
 
+    <select id="plSum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) pingLunNum  from post_comment pc where pc.post_id = #{post_id}
+    </select>
 
 </mapper>

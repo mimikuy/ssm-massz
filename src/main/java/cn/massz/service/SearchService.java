@@ -11,4 +11,8 @@ public interface SearchService {
     Bar toByBarName(String barName);
 
     List<Posts> getAllPostsByBarName(String barName);
+
+    int insertFollowBar(Integer barId, Integer user_id);
+
+    Boolean selfolbar(String barName, Integer user_id);
 }

@@ -120,7 +120,7 @@
                  success:function (res) {
                      if(res.code == 200){
                          mui.alert('注册成功！去登录', '提示', function() {
-                             window.location.href = "/login.jsp";
+                             window.location.href = "/toLogin";
                          });
                      }else{
                          mui.alert(res.msg);

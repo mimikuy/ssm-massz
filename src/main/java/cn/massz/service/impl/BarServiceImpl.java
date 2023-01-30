@@ -17,4 +17,8 @@ public class BarServiceImpl implements BarService {
     public List<Bar> getBarAll() {
         return mapper.getBarAll();
     }
+
+    public List<Bar> getBarByName(String barName) {
+        return mapper.getBarByName(barName);
+    }
 }

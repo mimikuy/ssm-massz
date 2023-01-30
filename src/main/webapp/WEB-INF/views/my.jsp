@@ -12,9 +12,9 @@
     <meta charset="utf-8">
     <title>我的</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="../../css/mui.css" rel="stylesheet" />
-    <link href="../../css/my.css" rel="stylesheet" />
-    <link href="../../fonts/iconfont.css" rel="stylesheet" />
+    <link href="/css/mui.css" rel="stylesheet" />
+    <link href="/css/my.css" rel="stylesheet" />
+    <link href="/fonts/iconfont.css" rel="stylesheet" />
 
 
 </head>
@@ -30,7 +30,7 @@
 
 <div class="user-info">
 
-    <img class="avatar" src="../../images/avatar.jpg" />
+    <img class="avatar" src="/img/${userSession.avatar}" />
     <div class="info-middle">
         <div class="info-top">
             <span class="iconfont icon-crown"></span>
@@ -47,20 +47,20 @@
 
 
 <div class="menu">
-    <div class="menu-item">
-        <div class="item-num">300</div>
+    <div class="menu-item follow">
+        <div class="item-num follow-num"></div>
         <div class="item-name">关注</div>
     </div>
-    <div class="menu-item">
-        <div class="item-num">3000</div>
+    <div class="menu-item fans" >
+        <div class="item-num fans-num"></div>
         <div class="item-name">粉丝</div>
     </div>
-    <div class="menu-item">
-        <div class="item-num">30</div>
+    <div class="menu-item followBar" >
+        <div class="item-num bar-num"></div>
         <div class="item-name">关注的吧</div>
     </div>
     <div class="menu-item">
-        <div class="item-num">3</div>
+        <div class="item-num post-num"></div>
         <div id="postList" class="item-name">帖子</div>
     </div>
 </div>
@@ -69,12 +69,12 @@
 
 
 <ul class="mui-table-view">
-    <li class="mui-table-view-cell">
+    <li class="mui-table-view-cell collection">
         <a class="mui-navigate-right">
             <span class="iconfont icon-favor"></span>我的收藏
         </a>
     </li>
-    <li class="mui-table-view-cell">
+    <li class="mui-table-view-cell history" >
         <a class="mui-navigate-right">
             <span class="iconfont icon-time"></span>浏览历史
         </a>
@@ -90,7 +90,7 @@
 
 <div class="botton-foot">
     <div class="button-one">
-        <span class="iconfont icon-home_fill_light"></span>
+        <span class="iconfont icon-home"></span>
         <div class="one">首页</div>
     </div>
     <div class="button-two">
@@ -107,17 +107,29 @@
     </div>
     <div class="button-five">
         <span class="iconfont icon-people"></span>
-        <div class="five">我的</div>
+        <div class="five" style="color: #00eaff">我的</div>
     </div>
 </div>
 
-<script src="../../js/mui.js"></script>
-<script src="../../js/jquery-3.4.1.min.js"></script>
+<script src="/js/mui.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-    mui.init()
+    mui.init(
+            getPostNum()
+    )
 
     $(".user-info").click(function(){
-        window.location.href='/tomyinformation'
+        $.ajax({
+            url:"/findUserInformation",
+            type:"get",
+            data:{},
+            success:function (res) {
+                if(res.code == 200){
+                    window.location.href='/toMyPage'
+                }
+            }
+        })
+
     });
 
     $(".setup").click(function (){
@@ -148,6 +160,81 @@
 
     $("#postList").click(function (){
         window.location.href= 'post/toPostList'
+    })
+
+
+    // 初始化页面
+    function getPostNum() {
+        $.ajax({
+            url:"/findUserInfo",
+            type:"get",
+            data:{},
+            success:function (res) {
+                if(res.code == 200){
+                    let userInfo = res.data;
+                    $(".post-num").text(userInfo.postNum)
+                    $(".bar-num").text(userInfo.barNum)
+                    $(".follow-num").text(userInfo.followNum)
+                    $(".fans-num").text(userInfo.fansNum)
+                }
+            }
+        })
+    }
+
+
+    $(".follow").click(function (){
+        $.ajax({
+            type:'get',
+            data: {user_id : ${userSession.user_id}},
+            url:'/myPage/findFollow',
+            success:function (res) {
+                window.location.href='/myPage/toFollow'
+            }
+        })
+
+    });
+    $(".fans").click(function (){
+        $.ajax({
+            type:'get',
+            data: {user_id : ${userSession.user_id}},
+            url:'/myPage/findFans',
+            success:function (res) {
+                window.location.href='/myPage/toFans';
+            }
+        })
+
+    });
+    $(".followBar").click(function (){
+        $.ajax({
+            type:'get',
+            data: {user_id : ${userSession.user_id}},
+            url:'/myPage/findFollowBar',
+            success:function (res) {
+                window.location.href='/myPage/toFollowBar';
+            }
+        })
+    });
+
+    $(".history").click(function (){
+        $.ajax({
+           type:'get',
+           data:{},
+           url:'/myPage/findHistory',
+           success:function (res) {
+                window.location.href='/myPage/toHistory';
+           }
+        });
+    });
+
+    $(".collection").click(function (res) {
+        $.ajax({
+            type:'get',
+            data:{},
+            url:'/myPage/findCollection',
+            success:function (res) {
+                window.location.href='/myPage/toCollection';
+            }
+        });
     })
 </script>
 </body>

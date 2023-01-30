@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.massz.dao.SearchMapper">
     <select id="searchByName" resultType="cn.massz.model.Bar" parameterType="cn.massz.model.Bar">
-        select bar_id barId,bar_name barName,pic_name picName,user_id userId from bar
+        select bar_id barId,bar_name barName,pic_name picName from bar
         <where>
         <if test="barName != null"></if>
             and bar_name like CONCAT(CONCAT('%',#{barName},'%'))
@@ -10,7 +10,7 @@
     </select>
 
     <select id="toByBarName" resultType="cn.massz.model.Bar" parameterType="java.lang.String">
-        select bar_id barId,bar_name barName,pic_name picName,user_id userId from bar where bar_name=#{barName}
+        select bar_id barId,bar_name barName,pic_name picName from bar where bar_name=#{barName}
     </select>
 
 
@@ -49,6 +49,14 @@
         from post p LEFT JOIN bar b on p.bar_id = b.bar_id
                     LEFT JOIN users u on p.user_id = u.user_id WHERE b.bar_name = #{barName}
 
+    </select>
+
+    <insert id="insertFollowBar" parameterType="java.lang.Integer">
+        insert into follow_bar (user_id,bar_id) values (#{user_id},#{barId})
+    </insert>
+
+    <select id="selfolbar" resultType="java.lang.Boolean">
+        select * from follow_bar where user_id=#{user_id} and bar_id= (select bar_id from bar where bar_name = #{barName})
     </select>
 
 

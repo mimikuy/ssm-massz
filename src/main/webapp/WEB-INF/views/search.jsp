@@ -97,7 +97,7 @@
     });
 
     $(".quxiao").click(function () {
-        window.location.href='/tomy'
+        window.history.go(-1)
     });
 
 </script>

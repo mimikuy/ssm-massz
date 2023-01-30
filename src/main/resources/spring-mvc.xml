@@ -29,7 +29,9 @@
             <!-- 配置拦截器作用的路径 -->
             <mvc:mapping path="/tojinba"/>
             <mvc:mapping path="/tomy"/>
-
+            <mvc:mapping path="/det/toPostDetails"/>
+            <mvc:mapping path="/post-like/addPostLike"/>
+            <mvc:mapping path="/post-like/deletePostLike"/>
             <!-- 配置拦截器不需要作用的路径 -->
             <!--<mvc:exclude-mapping path="/toLogin"/>
             <mvc:exclude-mapping path="/toHome"/>

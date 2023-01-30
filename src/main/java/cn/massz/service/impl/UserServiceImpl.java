@@ -39,4 +39,12 @@ public class UserServiceImpl implements UserService {
     public int insertUsers(Users users) {
         return mapper.insertUsers(users);
     }
+
+    public Users findUserInfo(Integer user_id) {
+        return mapper.findUserInfo(user_id);
+    }
+
+    public Users findUserInformation(Integer user_id) {
+        return mapper.findUserInformation(user_id);
+    }
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -101,13 +102,17 @@ public class PostController {
         return r;
     }
 
-   // 获取我的帖子列表
+   // 获取所有帖子列表
     @GetMapping("getAllPost")
     @ResponseBody
-    public R getAllPost(Integer pageNum,Integer pageSize){
+    public R getAllPost(Integer pageNum,Integer pageSize,HttpSession session,Posts post){
+        Users users = (Users)session.getAttribute("userSession");
+        if (users!=null){
+            post.setUserId(users.getUser_id());
+        }
 
         PageHelper.startPage(pageNum,pageSize); // pageNum当前页码，pageSize每页条数
-        List<Posts> list = postService.getAllPosts();
+        List<Posts> list = postService.getAllPosts(post);
         PageInfo pageInfo = new PageInfo(list);
         /*System.out.println(pageInfo);*/
         R r = new R();
@@ -116,8 +121,9 @@ public class PostController {
             r.setData(pageInfo);
         }
         return r;
-
     }
+
+
 
     // 删除帖子
     @GetMapping("deletePost")
@@ -160,4 +166,14 @@ public class PostController {
         }
         return r;
     }
+
+    /*在贴吧内发帖*/
+    @RequestMapping("/tobarname")
+    public String tobarname(String barName,HttpSession session) {
+
+        List<Bar> bar = barService.getBarByName(barName);
+        session.setAttribute("barList",bar);
+        return "posts";
+    }
+
 }

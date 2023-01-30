@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	touch-action: none;
 }
 
 body{
@@ -83,11 +84,11 @@ body{
 }
 .details-page .zhaopian{
 	text-align: center;
-	
+	padding-bottom: 8px;
 }
 
 .details-page .zhaopian img{
-	margin-bottom: 8px;
+
 	width: 360px;
 	height: 120px;
 }
@@ -217,17 +218,14 @@ body{
 
 .mui-input-row input{
 	margin-bottom: 2px;
-	width: 84%;
-	
-}
-.mui-input-row button{
-	display: inline;
-	border: 0px;
 }
 
 .mui-input-row:last-child{
 	background-color: white;
 }
 
+.red-color{
+	color: #ff0405;
+}
 
 

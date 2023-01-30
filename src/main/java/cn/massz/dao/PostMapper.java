@@ -13,9 +13,12 @@ public interface PostMapper {
 
     List<Posts> getPostList(Posts post);
 
-    List<Posts> getAllPosts();
+    List<Posts> getAllPosts(Posts post);
 
-    List<Posts> getAllPosts1();
+//    int plSum (Integer postId);
+
+
+
 
     @Delete("delete from post where post_id =#{postId} and user_id=#{userId}")
     int deletePost(Posts post);

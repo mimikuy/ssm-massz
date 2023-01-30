@@ -19,4 +19,12 @@ public class PostLike {
     public void setPostId(Integer postId) {
         this.postId = postId;
     }
+
+    @Override
+    public String toString() {
+        return "PostLike{" +
+                "userId=" + userId +
+                ", postId=" + postId +
+                '}';
+    }
 }

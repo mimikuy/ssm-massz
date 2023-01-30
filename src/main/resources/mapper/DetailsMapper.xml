@@ -2,4 +2,134 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.massz.dao.DetailsMapper">
 
+    <resultMap id="postDetails" type="cn.massz.model.Posts">
+            <!--column:数据表的字段名称
+            property:实体的属性名称-->
+        <id column="post_id" property="postId"></id>
+        <result column="post_title" property="postTitle"></result>
+        <result column="content" property="content"></result>
+        <result column="bar_id" property="barId"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="likeNum" property="likeNum"></result>
+        <result column="myLike" property="myLike"></result>
+        <collection property="bar" javaType="cn.massz.model.Bar" >
+            <id column="bar_id" property="barId"></id>
+            <result column="bar_name" property="barName"></result>
+            <result column="pic_name" property="picName"></result>
+        </collection>
+        <collection property="users" javaType="cn.massz.model.Users">
+            <id column="user_id" property="user_id"></id>
+            <result column="nick_name" property="nick_name"></result>
+            <result column="avatar" property="avatar"></result>
+
+        </collection>
+        <collection property="postImgList"
+                    ofType="cn.massz.model.PostImg"
+                    select="selectPostImg"
+                    column="post_id">
+        </collection>
+        <collection property="postComment"
+                    ofType="cn.massz.model.PostComment"
+                    select="selectPostComm"
+                    column="post_id">
+        </collection>
+    </resultMap>
+
+    <resultMap id="selectPc" type="cn.massz.model.PostComment">
+        <id column="comment_id" property="commentId"></id>
+        <result column="user_id" property="userId"></result>
+        <result column="comment_content" property="commentContent"></result>
+        <collection property="users" javaType="cn.massz.model.Users">
+            <id column="user_id" property="user_id"></id>
+            <result column="nick_name" property="nick_name"></result>
+            <result column="avatar" property="avatar"></result>
+        </collection>
+        <collection property="postCommCommList"
+                    ofType="cn.massz.model.PostCommComm"
+                    select="selectPostCommComm"
+                    column="comment_id">
+        </collection>
+    </resultMap>
+
+    <resultMap id="selectList" type="cn.massz.model.Users">
+        <id column="user_id" property="user_id"></id>
+        <result column="nick_name" property="nick_name"></result>
+        <result column="avatar" property="avatar"></result>
+    </resultMap>
+
+    <resultMap id="selectPcc" type="cn.massz.model.PostCommComm">
+        <id column="pcc_id" property="pcc_id"></id>
+        <result column="pcc_user_id" property="pcc_userId"></result>
+        <result column="pcc_comment_content" property="pcc_commentContent"></result>
+        <collection property="usersList"
+                    ofType="cn.massz.model.Users"
+                    select="selectUserList"
+                    column="pcc_user_id">
+        </collection>
+
+    </resultMap>
+
+    <select id="selectUserList" resultMap="selectList">
+        select * from users where user_id=#{pcc_user_id}
+    </select>
+
+    <select id="selectPostImg" resultType="cn.massz.model.PostImg">
+        select pic_name picName from post_img where post_id = #{post_id}
+    </select>
+
+    <select id="selectPostComm" resultMap="selectPc">
+        select * from post_comment pc left join users u on pc.user_id = u.user_id where post_id = #{post_id}
+    </select>
+
+    <select id="selectPostCommComm" resultMap="selectPcc">
+        select pcc.pcc_user_id,pcc.pcc_comment_content from post_comm_comm pcc where pcc.pcc_comment_id = #{comment_id}
+    </select>
+
+    <select id="postDetails" resultMap="postDetails" parameterType="cn.massz.model.Posts">
+        select *,
+            (select count(*) from post_like m where m.post_id = p.post_id) likeNum,
+                (select count(*) from post_like m where m.post_id = p.post_id and m.user_id=#{userId}) myLike
+        from post p
+            LEFT JOIN bar b on p.bar_id = b.bar_id
+            LEFT JOIN users u on p.user_id = u.user_id
+        where p.post_id = #{postId};
+    </select>
+
+
+
+
+    <!--二级评论-->
+    <insert id="insertPcc" parameterType="cn.massz.model.PostCommComm">
+        insert into post_comm_comm(pcc_user_id,pcc_comment_id,pcc_comment_content) values (#{pcc_userId},#{pcc_commentId},#{pcc_commentContent})
+    </insert>
+
+    <!--评论-->
+    <insert id="insertPc" parameterType="cn.massz.model.PostComment">
+        insert into post_comment(user_id,post_id,comment_content) values (#{userId},#{postId},#{commentContent})
+    </insert>
+
+    <!--删除评论-->
+    <delete id="delPc" parameterType="java.lang.Integer">
+        DELETE pc.*,pcc.* FROM post_comment pc left JOIN post_comm_comm pcc ON pc.comment_id = pcc.pcc_comment_id where pc.comment_id = #{commentId}
+    </delete>
+
+    <!--收藏帖子-->
+    <insert id="insertcollection" >
+        insert into collection (post_id,user_id) values (#{postId},#{user_id})
+    </insert>
+
+<!--关注-->
+    <insert id="insertFollowUserId" >
+        insert into follow_users (user_id,follow_user_id) values (#{user_id},#{follow_user_id})
+    </insert>
+
+    <insert id="insertFans" >
+        insert into fans (user_id,fans_id) values (#{follow_user_id},#{user_id})
+    </insert>
+
+    <!--查询是否关注-->
+    <select id="boolSel" resultType="java.lang.Boolean" parameterType="java.lang.Integer">
+        select * from follow_users where user_id = #{user_id} and follow_user_id =  (SELECT user_id FROM `post` where post_id = #{postId})
+    </select>
 </mapper>

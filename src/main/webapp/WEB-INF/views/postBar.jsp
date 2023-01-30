@@ -79,7 +79,7 @@
             </div>
             <div class="info-text">
                 <span>${post.content}</span>
-                <c:if test="${post.postImgList.size() == 1} && ${post.postImgList[0].picName} != null">
+                <c:if test="${post.postImgList.size() == 1}">
                     <div class="post-img">
                         <img src="/img/${post.postImgList[0].picName}"/>
                     </div>
@@ -111,8 +111,22 @@
 </div>
 
 <script src="/js/mui.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     mui.init()
+
+    $(".fabu").click(function (){
+        $.ajax({
+            type: 'post',
+            data:{
+                barName: '${allPostsByBarName[0].bar.barName}'
+            },
+            url: '/post/tobarname',
+            success: function (res) {
+                window.location.href = "/toPosts"
+            }
+        });
+    })
 </script>
 </body>
 

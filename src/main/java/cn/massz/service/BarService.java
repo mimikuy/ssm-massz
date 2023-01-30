@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface BarService {
     List<Bar> getBarAll();
+
+    List<Bar> getBarByName(String barName);
 }

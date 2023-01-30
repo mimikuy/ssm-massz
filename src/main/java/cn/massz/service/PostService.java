@@ -9,7 +9,9 @@ public interface PostService {
 
     List<Posts> getPostList(Posts post);
 
-    List<Posts> getAllPosts();
+    List<Posts> getAllPosts(Posts post);
+
+//    int plSum (Integer postId);
 
     int deletePost(Posts post);
 

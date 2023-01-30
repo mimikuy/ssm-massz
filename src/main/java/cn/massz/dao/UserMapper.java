@@ -21,4 +21,8 @@ public interface UserMapper {
     // 新增
     int insertUsers(Users users);
 
+
+    Users findUserInfo(Integer user_id);
+
+    Users findUserInformation(Integer user_id);
 }

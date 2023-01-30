@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.massz.dao.MyMapper">
+
+    <resultMap id="follow" type="cn.massz.model.Users">
+        <id column="user_id" property="user_id"></id>
+        <collection property="user" javaType="cn.massz.model.Users" select="findByUserId" column="user_id">
+
+        </collection>
+    </resultMap>
+    <select id="findByUserId" resultType="cn.massz.model.Users">
+        select * from users where user_id = (select follow_user_id from follow_users where  user_id = #{user_id})
+    </select>
+
+    <select id="findFollow" resultMap="follow" parameterType="java.lang.Integer">
+        select *,
+            (select count(*) FROM follow_users fu WHERE fu.user_id = #{userId} ) followNum
+        from users where user_id in (select follow_user_id from follow_users where user_id = #{userId})
+    </select>
+
+
+    <resultMap id="follow1" type="cn.massz.model.Users">
+        <id column="user_id" property="user_id"></id>
+        <collection property="user" javaType="cn.massz.model.Users" select="findByUserId1" column="user_id">
+
+        </collection>
+    </resultMap>
+    <select id="findByUserId1" resultType="cn.massz.model.Users">
+        select * from users where user_id = (select follow_user_id from follow_users where  user_id = #{user_id})
+    </select>
+
+    <select id="findFans" resultMap="follow1" parameterType="java.lang.Integer">
+        select *
+        from users where user_id in (select fans_id from fans where user_id = #{userId})
+    </select>
+
+    <select id="findBar" resultType="cn.massz.model.Bar" parameterType="java.lang.Integer">
+        select bar_name barName,pic_name picName from bar where bar_id in (select bar_id from follow_bar where user_id = #{userId})
+    </select>
+
+    <select id="findHistory" parameterType="java.lang.Integer" resultType="cn.massz.model.History">
+        select * from history where post_id = #{param1} and user_id = #{param2}
+    </select>
+
+    <insert id="insertHistory" parameterType="java.lang.Integer">
+        insert into history(post_id,user_id) VALUES (#{param1},#{param2})
+    </insert>
+
+    <update id="updateHistory" parameterType="java.lang.Integer">
+        update history set create_time = now() where post_id=#{param1} and user_id=#{param2}
+    </update>
+
+    <resultMap id="history" type="cn.massz.model.Posts">
+        <id column="post_id" property="postId"></id>
+        <result column="content" property="content"></result>
+        <result column="bar_id" property="barId"></result>
+
+        <association property="historyTime" javaType="java.lang.String" select="findByPostId" column="post_id">
+
+        </association>
+        <association property="barName" javaType="java.lang.String" select="findbarName" column="bar_id">
+
+        </association>
+    </resultMap>
+    <select id="findByPostId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select create_time historyTime from history where post_id = #{post_id}
+    </select>
+    <select id="findbarName" resultType="java.lang.String">
+        select bar_name barName from bar where bar_id = #{bar_id}
+    </select>
+
+    <select id="findHistoryById" resultMap="history" parameterType="java.lang.Integer">
+        SELECT * from post where post_id in (select post_id from history where user_id = #{user_id})
+    </select>
+
+
+    <resultMap id="collection" type="cn.massz.model.Posts">
+        <id column="post_id" property="postId"></id>
+        <result column="post_title" property="postTitle"></result>
+        <result column="content" property="content"></result>
+        <result column="user_id" property="userId"></result>
+        <collection property="postImgList" column="post_id" select="selectPostImg"></collection>
+        <collection property="users"  select="findusers" column="user_id">
+
+        </collection>
+    </resultMap>
+
+    <select id="selectPostImg" resultType="cn.massz.model.PostImg">
+        select pic_name picName from post_img where post_id = #{post_id}
+    </select>
+    <select id="findusers" resultType="cn.massz.model.Users">
+        select * from users where user_id = #{user_id}
+    </select>
+
+    <select id="findAllCollection" resultMap="collection" parameterType="java.lang.Integer">
+        SELECT * from post where post_id in (select post_id from collection where user_id = #{user_id})
+    </select>
+</mapper>

@@ -5,7 +5,6 @@ public class Bar {
     private String barName;
     private String picName;
 
-    private int userId;
 
 
     public int getBarId() {
@@ -33,13 +32,6 @@ public class Bar {
     }
 
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     @Override
     public String toString() {
@@ -47,7 +39,6 @@ public class Bar {
                 "barId=" + barId +
                 ", barName='" + barName + '\'' +
                 ", picName='" + picName + '\'' +
-                ", userId=" + userId +
                 '}';
     }
 }

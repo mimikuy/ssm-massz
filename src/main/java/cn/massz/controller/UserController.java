@@ -3,6 +3,7 @@ package cn.massz.controller;
 import cn.massz.controller.util.R;
 import cn.massz.model.Users;
 import cn.massz.service.UserService;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,16 @@ public class UserController {
     @RequestMapping("/toPosts")
     public String toPosts(){
         return "posts";
+    }
+
+    @RequestMapping("/toMyPage")
+    public String toMyPage(){
+        return "myPage";
+    }
+
+    @RequestMapping("/toRegister")
+    public String toRegister(){
+        return "register";
     }
 
     @Autowired
@@ -174,6 +185,43 @@ public class UserController {
         return r;
     }
 
+    // 查询用户信息
+    @GetMapping("findUserInfo")
+    @ResponseBody
+    public R findUserInfo(HttpSession session){
+        Users users = (Users)session.getAttribute("userSession");
 
+        Users usersInfo = userService.findUserInfo(users.getUser_id());
+        R r = new R();
+        if (usersInfo !=null ){
+            r.setData(usersInfo);
+            r.setCode(200);
+        }
+        return r;
+    }
+
+    // 查询个人用户信息
+    @GetMapping("findUserInformation")
+    @ResponseBody
+    public R toMyPage(HttpSession session){
+        Users users = (Users)session.getAttribute("userSession");
+
+        Users userInformation = userService.findUserInformation(users.getUser_id());
+        R r = new R();
+        if (userInformation !=null ){
+            session.setAttribute("userInformation",userInformation);
+            r.setCode(200);
+        }
+        return r;
+    }
+
+    // 退出
+    @RequestMapping("logout")
+    public String logout(HttpSession session){
+        // 销毁回话
+        session.invalidate();
+        // 重定向到登录页面
+        return "redirect:/toLogin";
+    }
 
 }

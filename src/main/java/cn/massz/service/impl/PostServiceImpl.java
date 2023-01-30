@@ -24,9 +24,13 @@ public class PostServiceImpl implements PostService {
         return mapper.getPostList(post);
     }
 
-    public List<Posts> getAllPosts() {
-        return mapper.getAllPosts();
+    public List<Posts> getAllPosts(Posts post) {
+        return mapper.getAllPosts(post);
     }
+
+   /* public int plSum(Integer postId) {
+        return mapper.plSum(postId);
+    }*/
 
 
     public int deletePost(Posts post) {

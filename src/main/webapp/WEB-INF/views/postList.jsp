@@ -207,6 +207,19 @@
                             $("#publicPost").text("公开帖子");
                         }
                     })
+                    // 点赞
+                    mui(".post-list").on('tap','.like-btn',function(){
+                        postId = $(this).parents(".post-item").attr("data-id");
+                        let isLike = $(this).hasClass("red-color");
+                        if(isLike){
+                            // 取消点赞
+                            deletePostLike();
+                        }else{
+                            // 点赞
+                            addPostLike();
+                        }
+
+                    })
                 }
 
             }

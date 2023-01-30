@@ -11,6 +11,21 @@ public class Users {
     private String signature;
     private String avatar;
 
+    private Integer postNum; // 我的帖子数
+    private Integer barNum; // 关注的吧数
+    private Integer fansNum; // 粉丝数
+    private Integer followNum; // 关注数
+    private Users user;
+
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
     public Integer getUser_id() {
         return user_id;
     }
@@ -75,6 +90,38 @@ public class Users {
         this.avatar = avatar;
     }
 
+    public Integer getPostNum() {
+        return postNum;
+    }
+
+    public void setPostNum(Integer postNum) {
+        this.postNum = postNum;
+    }
+
+    public Integer getBarNum() {
+        return barNum;
+    }
+
+    public void setBarNum(Integer barNum) {
+        this.barNum = barNum;
+    }
+
+    public Integer getFansNum() {
+        return fansNum;
+    }
+
+    public void setFansNum(Integer fansNum) {
+        this.fansNum = fansNum;
+    }
+
+    public Integer getFollowNum() {
+        return followNum;
+    }
+
+    public void setFollowNum(Integer followNum) {
+        this.followNum = followNum;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -86,6 +133,11 @@ public class Users {
                 ", gender='" + gender + '\'' +
                 ", signature='" + signature + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", postNum=" + postNum +
+                ", barNum=" + barNum +
+                ", fansNum=" + fansNum +
+                ", followNum=" + followNum +
+                ", user=" + user +
                 '}';
     }
 }

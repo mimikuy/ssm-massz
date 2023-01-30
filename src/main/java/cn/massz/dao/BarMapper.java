@@ -10,4 +10,7 @@ import java.util.List;
 public interface BarMapper {
     @Select("select bar_id barId,bar_name barName from bar order by bar_name")
     List<Bar> getBarAll();
+
+    @Select("select bar_id barId,bar_name barName from bar where bar_name = #{barName}")
+    List<Bar> getBarByName(String barName);
 }

@@ -18,4 +18,10 @@ public class PostLikeServiceImpl implements PostLikeService {
     public int deletePostLike(PostLike postLike) {
         return mapper.deletePostLike(postLike);
     }
+
+    public PostLike selectPostLike(PostLike postLike) {
+        return mapper.selectPostLike(postLike);
+    }
+
+
 }

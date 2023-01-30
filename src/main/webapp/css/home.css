@@ -54,17 +54,17 @@ body{
 }
 
 
-.info-foot{
-	padding: 10px 0 10px 0;
-}
+/*.info-foot{*/
+/*	padding: 10px 0 10px 0;*/
+/*}*/
 
-.info-foot span:nth-child(1){
-	margin-left: 70px;
-}
+/*.info-foot span:nth-child(1){*/
+/*	margin-left: 70px;*/
+/*}*/
 
-.info-foot span:nth-child(2){
-	margin-left: 150px;
-}
+/*.info-foot span:nth-child(2){*/
+/*	margin-left: 150px;*/
+/*}*/
 
 .gap{
 	height: 8px;
@@ -213,4 +213,16 @@ body{
 .botton-foot .button-five a{
 	text-decoration:none;
 	color: #000000;
+}
+
+
+.item-bottom{
+	display: flex;
+	justify-content: space-around;
+	padding: 10px 0;
+	color: #5a5a5a;
+}
+
+.red-color{
+	color: #ff0405;
 }

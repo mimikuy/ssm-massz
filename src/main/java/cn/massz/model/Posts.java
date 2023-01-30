@@ -13,11 +13,19 @@ public class Posts {
     private String barName;
     private Integer secret;
 
+    private Integer likeNum; // 点赞数
+    private Integer pingLunNum; // 帖子评论数
+    private Integer myLike; // 我是否点赞  0-未点赞，1-已点赞
+    private String historyTime;
+
+
     private Bar bar;
 
     private Users users;
 
     private List<PostImg> postImgList;
+
+    private List<PostComment> postComment;
 
 
     public Integer getPostId() {
@@ -84,12 +92,28 @@ public class Posts {
         this.secret = secret;
     }
 
-    public List<PostImg> getPostImgList() {
-        return postImgList;
+    public Integer getLikeNum() {
+        return likeNum;
     }
 
-    public void setPostImgList(List<PostImg> postImgList) {
-        this.postImgList = postImgList;
+    public void setLikeNum(Integer likeNum) {
+        this.likeNum = likeNum;
+    }
+
+    public Integer getPingLunNum() {
+        return pingLunNum;
+    }
+
+    public void setPingLunNum(Integer pingLunNum) {
+        this.pingLunNum = pingLunNum;
+    }
+
+    public Integer getMyLike() {
+        return myLike;
+    }
+
+    public void setMyLike(Integer myLike) {
+        this.myLike = myLike;
     }
 
     public Bar getBar() {
@@ -108,6 +132,32 @@ public class Posts {
         this.users = users;
     }
 
+
+
+    public List<PostImg> getPostImgList() {
+        return postImgList;
+    }
+
+    public void setPostImgList(List<PostImg> postImgList) {
+        this.postImgList = postImgList;
+    }
+
+    public List<PostComment> getPostComment() {
+        return postComment;
+    }
+
+    public void setPostComment(List<PostComment> postComment) {
+        this.postComment = postComment;
+    }
+
+    public String getHistoryTime() {
+        return historyTime;
+    }
+
+    public void setHistoryTime(String historyTime) {
+        this.historyTime = historyTime;
+    }
+
     @Override
     public String toString() {
         return "Posts{" +
@@ -119,9 +169,14 @@ public class Posts {
                 ", createTime='" + createTime + '\'' +
                 ", barName='" + barName + '\'' +
                 ", secret=" + secret +
+                ", likeNum=" + likeNum +
+                ", pingLunNum=" + pingLunNum +
+                ", myLike=" + myLike +
+                ", historyTime='" + historyTime + '\'' +
                 ", bar=" + bar +
                 ", users=" + users +
                 ", postImgList=" + postImgList +
+                ", postComment=" + postComment +
                 '}';
     }
 }

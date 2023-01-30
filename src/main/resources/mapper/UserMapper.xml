@@ -29,5 +29,27 @@
         where user_name = #{user_name}
     </select>
 
+    <select id="findUserInfo" parameterType="int" resultType="cn.massz.model.Users">
+        SELECT
+            (SELECT count(*) FROM post m WHERE m.user_id = a.user_id ) postNum,
+            (select count(*) FROM follow_bar fb WHERE fb.user_id = a.user_id ) barNum,
+            (select count(*) FROM fans f WHERE f.user_id = a.user_id ) fansNum,
+            (select count(*) FROM follow_users fu WHERE fu.user_id = a.user_id ) followNum
+        FROM
+            users a
+        WHERE
+            a.user_id = #{user_id}
+    </select>
 
+
+    <select id="findUserInformation" parameterType="int" resultType="cn.massz.model.Users">
+        SELECT *,
+                (select count(*) FROM follow_bar fb WHERE fb.user_id = a.user_id ) barNum,
+                (select count(*) FROM fans f WHERE f.user_id = a.user_id ) fansNum,
+                (select count(*) FROM follow_users fu WHERE fu.user_id = a.user_id ) followNum
+        FROM
+            users a
+        WHERE
+            a.user_id = #{user_id}
+    </select>
 </mapper>

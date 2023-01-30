@@ -79,7 +79,7 @@
 
         // 去注册页面
         $("#toRegister").click(function () {
-            window.location.href="/register.jsp";
+            window.location.href="/toRegister";
         });
 
 

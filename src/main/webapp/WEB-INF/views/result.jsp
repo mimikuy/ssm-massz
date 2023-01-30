@@ -38,16 +38,21 @@
         <span>相关吧</span>
     </div>
     <c:forEach items="${barList}" var="bar">
-        <div class="ba-info" onclick="toPostBar('${bar.barName}')">
+        <div class="ba-info" >
             <img class="avatar" src="/img/${bar.picName}" />
-            <div class="info-middle">
+            <div class="info-middle" onclick="toPostBar('${bar.barName}')">
                 <div class="info-top">
                     <span class="nickname">${bar.barName}</span>
                 </div>
                 <div class="info-bottom">关注22.4W 帖子400.9W</div>
             </div>
             <div class="more">
-                <span class="guanzhu">关注</span>
+                <c:if test="${selfolbar == true}">
+                    <span class="guanzhu" >已关注</span>
+                </c:if>
+                <c:if test="${selfolbar == null}">
+                    <span class="guanzhu" onclick="followBar(${bar.barId})">关注</span>
+                </c:if>
             </div>
         </div>
     </c:forEach>
@@ -74,13 +79,9 @@
     });
 
     $(".quxiao").click(function () {
-        window.location.href='/tomy'
+        window.history.go(-1)
     });
 
-    <%--$(".ba-info").click(function () {--%>
-    <%--    console.log(${bar.barName})--%>
-    <%--    console.log("qqqq")--%>
-    <%--});--%>
 
     function toPostBar(barName){
         console.log(barName)
@@ -90,6 +91,20 @@
             url: '/search/getAllPosts',
             success:function (res) {
                 $('.result-page').html(res);
+            }
+        });
+    }
+
+    function followBar(id){
+
+        $.ajax({
+            type: 'post',
+            data: {barId:id},
+            url: '/search/getFollowBar',
+            success:function (res) {
+                if (res.code == 200){
+                    location.reload();
+                }
             }
         });
     }

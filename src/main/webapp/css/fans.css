@@ -1,0 +1,49 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: #FFF;
+}
+
+.mui-bar-nav{
+	top: 0;
+	-webkit-box-shadow: 0 0px 0px #ccc;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.mui-bar a{
+	color: #000000;
+}
+
+.mui-content{
+	background-color: #FFF;
+}
+
+.mui-content .top{
+	font-size: 14px;
+	padding: 10px 0px;
+	color: #C0C0C0;
+}
+
+.mui-content .top span{
+	margin-left: 15px;
+
+}
+
+.user-info{
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	border-bottom: 1px solid #f7f7f7;
+}
+.user-info .avatar{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+.user-info .info-middle{
+	flex: 1;
+	margin-left: 8px;
+}

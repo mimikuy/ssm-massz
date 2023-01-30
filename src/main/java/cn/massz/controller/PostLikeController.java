@@ -33,6 +33,8 @@ public class PostLikeController {
         if(result == 0){
             apiResult.setCode(400);
             apiResult.setMsg("点赞失败");
+        }else {
+            apiResult.setCode(200);
         }
         return apiResult;
     }
@@ -51,6 +53,30 @@ public class PostLikeController {
         if(result == 0){
             apiResult.setCode(400);
             apiResult.setMsg("点赞失败");
+        }
+        else {
+            apiResult.setCode(200);
+        }
+        return apiResult;
+    }
+
+    @GetMapping("/selectPostLike")
+    @ResponseBody
+    public R selectPostLike(Integer postId,HttpSession session){
+        PostLike postLike = new PostLike();
+        Users users = (Users)session.getAttribute("userSession");
+        postLike.setUserId(users.getUser_id());
+        postLike.setPostId(postId);
+        System.out.println(postLike);
+        PostLike selectPostLike = postLikeService.selectPostLike(postLike);
+        System.out.println(selectPostLike+"=============");
+        R apiResult = new R();
+        if(selectPostLike == null){
+            apiResult.setCode(400);
+            apiResult.setMsg("点赞失败");
+        }
+        else {
+            apiResult.setCode(200);
         }
         return apiResult;
     }
